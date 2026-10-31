@@ -16,7 +16,7 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, Tabl
 from matplotlib import font_manager
 
 ROOT=Path(__file__).resolve().parents[1]
-OUT=ROOT/'report'/'Confidence_Paradox_Research_Report_CORRECTED.pdf'
+OUT=ROOT/'report'/'Confidence_Paradox_Research_Report.pdf'
 OUT.parent.mkdir(exist_ok=True)
 S=pd.read_csv(ROOT/'results'/'cross_study_primary_summary.csv')
 assert len(S)==3, 'Require three primary study results'
@@ -36,11 +36,9 @@ R_CONTR=pd.read_csv(R/'rouault_gee_within_between_contrast.csv').iloc[0]
 K_PRIMARY=K_SUM.query("subset == 'motion_motion'").iloc[0]
 A_CONTR=A_RES.query("task == 'Color' and term == 'within_minus_between'").iloc[0]
 
-REG_FONT = font_manager.findfont('DejaVu Serif')
-BOLD_FONT = font_manager.findfont(
-    font_manager.FontProperties(family='DejaVu Serif', weight='bold')
-)
-SANS_FONT = font_manager.findfont('DejaVu Sans')
+REG_FONT=font_manager.findfont('DejaVu Serif')
+BOLD_FONT=font_manager.findfont(font_manager.FontProperties(family='DejaVu Serif', weight='bold'))
+SANS_FONT=font_manager.findfont('DejaVu Sans')
 pdfmetrics.registerFont(TTFont('ReportSerif',str(REG_FONT)))
 pdfmetrics.registerFont(TTFont('ReportSerifBold',str(BOLD_FONT)))
 pdfmetrics.registerFont(TTFont('ReportSans',str(SANS_FONT)))
@@ -148,7 +146,7 @@ for bullet in [
  'The earlier variational-Bayes model gave a suspiciously narrow interval. Numerical GLMM refitting lessens but does not remove model dependence; calibration and discrimination remain distinct outcomes.'
 ]: s.append(P('• '+escape(bullet),'small'))
 s.extend([P('Reproduce the analysis','section'),
- P('From the supplied Python environment install dependencies with <b>pip install -r requirements.txt</b>, then execute <b>python run_all.py</b>. The runner rebuilds CSV results, plots and this report, then calls validation tests. To inspect the corrected mixed-model conflict, see <b>STATISTICAL_AUDIT.md</b>. The source CSVs are unchanged and are available under the Confidence Database CC0 data release; original source studies must be credited.'),
+ P('From the supplied Python environment install dependencies with <b>pip install -r requirements.txt</b>, then execute <b>python run_all.py</b>. The runner rebuilds CSV results, plots and this report, then calls validation tests. To inspect the corrected mixed-model conflict, see <b>docs/STATISTICAL_AUDIT.md</b>. The source CSVs are unchanged and are available under the Confidence Database CC0 data release; original source studies must be credited.'),
  P('Research transparency','section'),
  P('This is a student secondary-data project prepared with AI coding assistance. It is not a peer-reviewed publication. A standalone prospective preregistered study, robust replication with new participants, and external-domain data would be needed for stronger generalizability claims.'),
  P('References','section')])

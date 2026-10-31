@@ -30,3 +30,12 @@
 - The random-slope predictive comparison from early experimental files is *not* in this release; claims about its predictive improvement are withdrawn pending revalidation.
 - Stronger causal, out-of-domain or preregistered claims require other data and methods.
 - Distinct GEE/GLMM estimands prevent equating their coefficients or treating borderline bootstrap significance as proof.
+
+## CV-facing repository tidy-up — 27 October 2026
+
+- Moved five ancillary root documents to `docs/` to simplify the landing page; updated paths and the SHA-256 validation lookup accordingly.
+- Renamed the canonical report to `report/Confidence_Paradox_Research_Report.pdf`, keeping its content data-derived; pipeline regenerates the renamed file.
+- Changed README figure alternative text from "independent" to "separate" to avoid overstating study independence.
+- Added full-run runtime guidance explicitly labeled unbenchmarked and pointers to Bootstrap diagnostics.
+- Added explicit PyMuPDF and Pillow dependencies, selected portable DejaVu fonts, and replaced deprecated `fitz` import.
+- Preserved model estimates, methodology, caveats and source datasets. The earlier seven-page narrative PDF is superseded and is not an authoritative output of this pipeline.

@@ -20,7 +20,7 @@ def must(path):
 def close(actual, expected, atol=1e-10):
     assert np.isfinite(float(actual)) and abs(float(actual)-float(expected))<atol,(actual,expected)
 
-for line in (ROOT/'SHA256_SOURCE_FILES.txt').read_text().splitlines():
+for line in (ROOT/'docs/SHA256_SOURCE_FILES.txt').read_text().splitlines():
     hashed,rel=line.split(maxsplit=1)
     actual=hashlib.sha256(must(rel).read_bytes()).hexdigest()
     assert hashed==actual,f'Changed source CSV: {rel}'
@@ -98,7 +98,7 @@ for path in ['figures/three_study_within_effects.png','figures/rouault_sensitivi
     p=must(path)
     with PILImage.open(p) as im:assert im.width>=650 and im.height>=350
 
-pdf=fitz.open(must('report/Confidence_Paradox_Research_Report_CORRECTED.pdf'))
+pdf=fitz.open(must('report/Confidence_Paradox_Research_Report.pdf'))
 assert len(pdf)==4,f'Report unexpectedly has {len(pdf)} pages'
 text=' '.join(' '.join(page.get_text().split()) for page in pdf)
 for value in [f'{row.within_coef:+.3f}' for row in summ.itertuples(index=False)]:
